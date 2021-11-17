@@ -20,7 +20,7 @@ class WebsiteSubscriptionService
     public function subscribe($data)
     {
         $user = $this->userService->get($data);
-        $user->websites()->sync([$data['website_id']]);
+        $user->websites()->syncWithoutDetaching([$data['website_id']]);
         return true;
     }
 }
