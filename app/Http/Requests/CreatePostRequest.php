@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\UniquePostPerWebsite;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreatePostRequest extends FormRequest
@@ -26,7 +27,7 @@ class CreatePostRequest extends FormRequest
         return [
             'title' => 'required',
             'description' => 'required',
-            'website_id' => 'required|exists:websites,id'
+            'website_id' => ['required','exists:websites,id',new UniquePostPerWebsite]
         ];
     }
 }
