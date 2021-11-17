@@ -19,14 +19,8 @@ class WebsiteSubscriptionService
 
     public function subscribe($data)
     {
-        try {
-            $user = $this->userService->get($data);
-            $user->websites()->sync([$data['website_id']]);
-            return true;
-        } catch (\Exception $exception) {
-            logException($exception);
-            return $exception;
-        }
-
+        $user = $this->userService->get($data);
+        $user->websites()->sync([$data['website_id']]);
+        return true;
     }
 }

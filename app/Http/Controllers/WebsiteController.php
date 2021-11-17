@@ -16,15 +16,12 @@ class WebsiteController extends Controller
 
     public function subscribe(WebsiteSubscriptionRequest $request, WebsiteSubscriptionService $service)
     {
-        if ($service->subscribe($request->all())) {
-            return response()->json([
-                'status' => 'success',
-                'data' => 'User subscribed successfully'
-            ]);
+        try {
+            $service->subscribe($request->all());
+            return sendSuccessResponse('User subscribed successfully');
+        } catch (\Exception $exception) {
+            logException($exception);
+            return sendErrorResponse('User subscription failed', 400);
         }
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Subcription failed'
-        ], 400);
     }
 }

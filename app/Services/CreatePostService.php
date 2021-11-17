@@ -18,13 +18,8 @@ class CreatePostService
 
     public function create($data)
     {
-        try {
-            $post = $this->postRepository->save($data);
-            event(new PostCreateEvent($post));
-            return true;
-        } catch (\Exception $exception) {
-            logException($exception);
-            return $exception;
-        }
+        $post = $this->postRepository->save($data);
+        event(new PostCreateEvent($post));
+        return $post;
     }
 }

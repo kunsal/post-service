@@ -20,6 +20,6 @@ class UserService
 
     public function get($data)
     {
-        return $this->userRepository->save($data);
+        return $this->userRepository->createOrFetch($data);
     }
 }

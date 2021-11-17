@@ -10,10 +10,18 @@ class PostController extends Controller
 {
     public function create(CreatePostRequest $request, CreatePostService $service)
     {
-        $post = $service->create($request->all());
-        return response()->json([
-            'status' => 'success',
-            'data' => 'Post created successfully'
-        ], 201);
+        try {
+            $post = $service->create($request->all());
+            return sendSuccessResponse('Post created successfully', [
+                'name' => $post->name,
+                'description' => $post->descripiton,
+                'website' => $post->website->name
+            ], 201);
+
+        } catch (\Exception $exception) {
+            logException($exception);
+            return sendErrorResponse('Something went wrong creating the post. Try again');
+        }
+
     }
 }
