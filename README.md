@@ -18,3 +18,6 @@ This is a service that enable users to subscribe to websites and get notified vi
 
 ## Postman Collection
 [Click Here to get it](https://www.getpostman.com/collections/994fc8768694045b39d3)
+
+## Documentation
+https://documenter.getpostman.com/view/1761329/UVCBBkCQ
